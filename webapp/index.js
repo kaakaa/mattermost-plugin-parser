@@ -4,12 +4,6 @@ const parsePluginRepository = require('./parse_plugin_repository');
 
 const Store = require('./store/store');
 
-/*
-const repository = "https://github.com/mattermost/mattermost-plugin-demo";
-const commitId = "ffcf4e3e3841e55a801c7e497e3f24f740c79e1d";
-const basePath = "./mattermost-plugin-demo";
-*/
-
 const parse = async (path) => {
     const pluginResistryClassMethod = await parseMattermost.parsePluginResistryClassMethod();
     console.log("  * Complete to parse mattermost webapp plugin resistry. ");

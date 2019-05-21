@@ -12,9 +12,9 @@ import (
 func InitDB() (*sql.DB, error) {
 	user := os.Getenv("MYSQL_USER")
 	pass := os.Getenv("MYSQL_PASSWORD")
-	host := os.Getenv("MYSQL_HOST") // "localhost:13306"
+	host := os.Getenv("MYSQL_HOST")
 	port := os.Getenv("MYSQL_PORT")
-	db := os.Getenv("MYSQL_DATABASE") // "mmplugin_parser"
+	db := os.Getenv("MYSQL_DATABASE")
 	if len(port) == 0 {
 		host = host + ":" + "3306"
 	} else {

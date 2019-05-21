@@ -56,15 +56,3 @@ const toMd = (api, usages) => {
     return ret.join("\n");
 }
 report()
-
-/*
-REPOSITORY_NAME
-* [${usage.api}](${repository.url}/blob/${repository.commit_id}/${usage.path}#l${usage.line})
-*/
-
-/*
-## #{usage.api}
-| repo | file |
-|:-----|:-----|
-| [${REPONAME}](${repository.url}) | [${usage.path}](${repository.url}/blob/master/${usage.path}#l${usage.line}) |
-*/
