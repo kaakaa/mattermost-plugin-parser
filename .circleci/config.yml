@@ -19,4 +19,4 @@ jobs:
             cd ../webapp && npm install 
       - run:
           name: Run plugin parser
-          command: ../run.sh
+          command: ./run.sh
