@@ -15,12 +15,8 @@ jobs:
       - run:
           name: Set up
           command: |
-            echo ${PWD}
-            export
-            echo ${CIRCLE_WORKING_DIRECTORY}
-            echo ${HOME}
-            cd ${CIRCLE_WORKING_DIRECTORY}/server && go build
-            cd ${CIRCLE_WORKING_DIRECTORY}/webapp && npm install 
+            cd ./server && go build
+            cd ./webapp && npm install 
       - run:
           name: Run plugin parser
-          command: cd ${GOPATH} && ./run.sh
+          command: ./run.sh
