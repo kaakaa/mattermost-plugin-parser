@@ -15,6 +15,8 @@ jobs:
       - run:
           name: Set up
           command: |
+            echo ${PWD}
+            export
             echo ${CIRCLE_WORKING_DIRECTORY}
             echo ${HOME}
             cd ${CIRCLE_WORKING_DIRECTORY}/server && go build
