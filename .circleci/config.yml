@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     environment:
-      - GO111MODULE: on
+      GO111MODULE: on
     docker:
       - image: circleci/golang:1.12.5-stretch
     steps:
