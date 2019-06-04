@@ -15,8 +15,10 @@ jobs:
       - run:
           name: Set up
           command: |
-            cd ${GOPATH}/server && go build
-            cd ${GOPATH}/webapp && npm install 
+            echo ${CIRCLE_WORKING_DIRECTORY}
+            echo ${HOME}
+            cd ${CIRCLE_WORKING_DIRECTORY}/server && go build
+            cd ${CIRCLE_WORKING_DIRECTORY}/webapp && npm install 
       - run:
           name: Run plugin parser
           command: cd ${GOPATH} && ./run.sh
