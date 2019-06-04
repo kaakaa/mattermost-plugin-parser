@@ -29,3 +29,6 @@ https://github.com/mattermost/mattermost-plugin-walltime
 https://github.com/mattermost/mattermost-plugin-welcomebot
 https://github.com/techunter/mattermost-xkcd-plugin
 https://github.com/standup-raven/standup-raven
+https://github.com/manland/mattermost-plugin-gitlab
+https://github.com/kosgrz/mattermost-plugin-skype4business
+https://github.com/waseem18/mattermost-plugin-jenkins
