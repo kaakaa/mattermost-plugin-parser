@@ -1,6 +1,8 @@
 version: 2.1
 jobs:
   build:
+    environment:
+      - GOPATH: /home/circleci/project
     docker:
       - image: circleci/golang:1.12.5-stretch
     steps:
@@ -13,12 +15,13 @@ jobs:
             if ! type dep >/dev/null 2>&1; then
               go get -u github.com/golang/dep/cmd/dep
             fi
-                
+            echo 'export PATH=${GOPATH}/bin/:%{PATH}' >> $BASH_ENV
       - run:
           name: Set up
           command: |
-            cd server && dep ensure && cd ..
-            cd webapp && npm install && cd ..
+            ls -l ${GOPATH}
+            cd ${GOPATH}/server && dep ensure
+            cd ${GOPATH}/webapp && npm install 
       - run:
           name: Run plugin parser
-          command: ./run.sh
+          command: cd ${GOPATH} && ./run.sh
