@@ -16,7 +16,7 @@ jobs:
           name: Set up
           command: |
             cd ./server && go build
-            cd ./webapp && npm install 
+            cd ../webapp && npm install 
       - run:
           name: Run plugin parser
-          command: ./run.sh
+          command: ../run.sh
