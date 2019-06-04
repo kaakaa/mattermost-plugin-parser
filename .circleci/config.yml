@@ -6,10 +6,16 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Update Node.js and npm"
+          name: "Install node.js/npm and dep"
           command: |
             curl -sSL "https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.0-linux-x64/bin/node
             curl https://www.npmjs.com/install.sh | sudo bash
+            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sudo sh
+      - run:
+          name: Set up
+          command: |
+            cd server && dep ensure && cd ..
+            cd webapp && npm install && cd ..
       - run:
           name: Run plugin parser
           command: ./run.sh
