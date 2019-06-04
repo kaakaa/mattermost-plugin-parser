@@ -43,7 +43,7 @@ $ export MYSQL_DATABASE=mmplugin_parser
 If you set up mysql on Heroku, you can get information for connecting by [`heroku-cli`](https://devcenter.heroku.com/articles/heroku-cli).
 
 ```
-$ heroku config | grep CLEARDB_DATABASE_URL
+$ heroku config --app $HEROKU_APP_NAME | grep CLEARDB_DATABASE_URL
 CLEARDB_DATABASE_URL => mysql://adffdadf2341:adf4234@us-cdbr-east.cleardb.com/heroku_db?reconnect=true
 
 $ export MYSQL_HOST=us-cdbr-east.cleardb.com
