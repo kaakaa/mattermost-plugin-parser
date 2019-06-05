@@ -1,22 +1,27 @@
-version: 2.1
-jobs:
-  build:
-    environment:
-      GO111MODULE: "on"
-    docker:
-      - image: circleci/golang:1.12.5-stretch
-    steps:
-      - checkout
-      - run:
-          name: "Install node.js/npm and dep"
-          command: |
-            curl -sSL "https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.0-linux-x64/bin/node
-            curl https://www.npmjs.com/install.sh | sudo bash
-      - run:
-          name: Set up
-          command: |
-            cd ./server && go build
-            cd ../webapp && npm install 
-      - run:
-          name: Run plugin parser
-          command: ./run.sh
+workflows:
+  version: 2.1
+  nightly:
+    triggers:
+      - schedule:
+        cron: "0 0 * * *"
+    jobs:
+      build:
+        environment:
+          GO111MODULE: "on"
+        docker:
+          - image: circleci/golang:1.12.5-stretch
+        steps:
+          - checkout
+          - run:
+              name: "Install node.js/npm and dep"
+              command: |
+                curl -sSL "https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.0-linux-x64/bin/node
+                curl https://www.npmjs.com/install.sh | sudo bash
+          - run:
+              name: Set up
+              command: |
+                cd ./server && go build
+                cd ../webapp && npm install 
+          - run:
+              name: Run plugin parser
+              command: ./run.sh
