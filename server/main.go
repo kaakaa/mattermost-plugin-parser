@@ -12,7 +12,7 @@ import (
 
 func main() {
 	if len(os.Args) != 5 {
-		log.Fatal("Must be 4 arguments. [repository_url] [commit_id] [repo_dir] [commited_at]")
+		log.Fatal("Must be 4 arguments. [repository_url] [commit_id] [repo_dir] [commited_at]. Your arguments %v", os.Args)
 	}
 	repository := os.Args[1]
 	commitId := os.Args[2]
@@ -25,6 +25,15 @@ func main() {
 		log.Fatal(err)
 	}
 	if err := store.InsertRepository(db, repository, commitId, commitedAt); err != nil {
+		log.Fatal(err)
+	}
+
+	// Parse manifest file
+	manifest, err := parseMattermostPluginManifest(basePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if err := store.InsertManifest(db, commitId, manifest); err != nil {
 		log.Fatal(err)
 	}
 

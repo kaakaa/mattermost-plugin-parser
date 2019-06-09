@@ -25,6 +25,20 @@ This repository has `docker-compose.yml`. If you want to run the analysis locall
 I use [Metabase on Heroku](https://metabase.com/start/heroku.html). But Metabase on Heroku uses `PostgreSQL` for DB, but this repository uses `MySQL` for DB.
 So after setting up Metabase on Heroku, I add [ClearDB add-on](https://metabase.com/start/heroku.html) for that heroku app. And I set Metabase service to refer ClearDB service.
 
+After setting up cleardb, you should run init sql in order to create database/tables.
+
+```
+$ heroku config --app $HEROKU_APP_NAME | grep CLEARDB_DATABASE_URL
+CLEARDB_DATABASE_URL => mysql://adffdadf2341:adf4234@us-cdbr-east.cleardb.com/heroku_db?reconnect=true
+
+$ mysql --host=us-cdbr-east.cleardb.com --user=adffdadf2341 --password=adf4234 --reconnect heroku_db < ./initdb/2_create_repositories.sql
+$ mysql --host=us-cdbr-east.cleardb.com --user=adffdadf2341 --password=adf4234 --reconnect heroku_db < ./initdb/3_create_usages_table.sql
+$ mysql --host=us-cdbr-east.cleardb.com --user=adffdadf2341 --password=adf4234 --reconnect heroku_db < ./initdb/4_create_manifest_table.sql
+$ mysql --host=us-cdbr-east.cleardb.com --user=adffdadf2341 --password=adf4234 --reconnect heroku_db < ./initdb/5_create_settings_schema_table.sql
+$ mysql --host=us-cdbr-east.cleardb.com --user=adffdadf2341 --password=adf4234 --reconnect heroku_db < ./initdb/6_create_plugin_settings_table.sql
+$ mysql --host=us-cdbr-east.cleardb.com --user=adffdadf2341 --password=adf4234 --reconnect heroku_db < ./initdb/7_create_props_table.sql
+```
+
 ## Parse Mattemrost plugin repositories
 
 ### 1. Environement variables
@@ -60,7 +74,7 @@ $ export MYSQL_DATABASE=heroku_db
 
 ```
 $ cd server
-$ dep ensure
+$ go mod tidy
 ```
 
 * Resolve dependencies for `webapp`

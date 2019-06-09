@@ -14,6 +14,7 @@ type called struct {
 
 func findCalledPuluginAPI(fset *token.FileSet, parsed []*ast.File) ([]called, error) {
 	imp := importer.ForCompiler(fset, "source", nil)
+	// imp := importer.Default()
 	conf := types.Config{Importer: imp}
 	info := &types.Info{
 		Types: make(map[ast.Expr]types.TypeAndValue),

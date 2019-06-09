@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"go/ast"
 	"go/parser"
@@ -8,12 +9,44 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"path/filepath"
+
+	"github.com/mattermost/mattermost-server/model"
+	yaml "gopkg.in/yaml.v2"
 )
 
 const (
 	ApiFileURL   = "https://raw.githubusercontent.com/mattermost/mattermost-server/master/plugin/api.go"
 	HooksFileURL = "https://raw.githubusercontent.com/mattermost/mattermost-server/master/plugin/hooks.go"
 )
+
+func parseMattermostPluginManifest(path string) (*model.Manifest, error) {
+	switch {
+	case fileExists(filepath.Join(path, "plugin.json")):
+		file := filepath.Join(path, "plugin.json")
+		b, err := ioutil.ReadFile(file)
+		if err != nil {
+			return nil, err
+		}
+		var manifest model.Manifest
+		if err := json.Unmarshal(b, &manifest); err != nil {
+			return nil, err
+		}
+		return &manifest, nil
+	case fileExists(filepath.Join(path, "plugin.yaml")):
+		file := filepath.Join(path, "plugin.yaml")
+		b, err := ioutil.ReadFile(file)
+		if err != nil {
+			return nil, err
+		}
+		var manifest model.Manifest
+		if err := yaml.Unmarshal(b, &manifest); err != nil {
+			return nil, err
+		}
+		return &manifest, nil
+	}
+	return nil, fmt.Errorf("There is no manifest file in %s.", path)
+}
 
 func parseMattermostPluginInterface() ([]*ast.Object, []*ast.Object, error) {
 	apiFuncs, err := parseInterface(ApiFileURL, "API")
