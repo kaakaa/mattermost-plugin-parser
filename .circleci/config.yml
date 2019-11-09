@@ -12,6 +12,7 @@ jobs:
           command: |
             curl -sSL "https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.0-linux-x64/bin/node
             curl https://www.npmjs.com/install.sh | sudo bash
+            go get -u github.com/golang/dep/cmd/dep
       - run:
           name: Set up
           command: |

@@ -4,8 +4,8 @@ const glob = require('glob');
 
 const findRecursive = async (path) => {
     let ret = [];
-    ret = ret.concat(await parseFiles(glob.sync(path + "/**/*.jsx"), true));
-    ret = ret.concat(await parseFiles(glob.sync(path + "/**/*.js"), false));
+    ret = ret.concat(await parseFiles(glob.sync(path + "/**/*.jsx", {ignore: path + "/node_modules/**"}), true));
+    ret = ret.concat(await parseFiles(glob.sync(path + "/**/*.js", {ignore: path + "/node_modules/**"}), false));
     return ret
 }
 

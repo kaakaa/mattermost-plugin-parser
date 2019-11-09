@@ -13,8 +13,30 @@ type called struct {
 }
 
 func findCalledPuluginAPI(fset *token.FileSet, parsed []*ast.File) ([]called, error) {
-	imp := importer.ForCompiler(fset, "source", nil)
-	// imp := importer.Default()
+	/*
+		imp := importer.ForCompiler(fset, runtime.Compiler, func(path string) (io.ReadCloser, error) {
+			log.Println(path)
+			file := filepath.Join(runtime.GOROOT(), "pkg", fmt.Sprintf("%s_%s", runtime.GOOS, runtime.GOARCH), path+".a")
+			log.Printf("file: %s", file)
+			f, err := os.Open(file)
+			if err != nil && os.IsNotExist(err) {
+				log.Println("%%")
+				pkg, err := build.ImportDir(path, build.IgnoreVendor)
+				if err != nil {
+					return nil, err
+				}
+				log.Printf("TEST: %#v", pkg)
+				p := filepath.Join("..", "vendor", path)
+				log.Println(p)
+				f, err = os.Open(p)
+				if err != nil {
+					return nil, err
+				}
+			}
+			return f, err
+		})
+	*/
+	imp := importer.Default()
 	conf := types.Config{Importer: imp}
 	info := &types.Info{
 		Types: make(map[ast.Expr]types.TypeAndValue),

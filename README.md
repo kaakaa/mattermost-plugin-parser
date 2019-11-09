@@ -47,11 +47,11 @@ At first, you must set evironment variables for connection MySQL.
 
 If you set up mysql by `docker-compose`...
 ```
-$ export MYSQL_HOST=localhost
-$ export MYSQL_PORT=13306
-$ export MYSQL_USER=mmuser
-$ export MYSQL_PASSWORD=mostest
-$ export MYSQL_DATABASE=mmplugin_parser
+export MYSQL_HOST=localhost \
+&& export MYSQL_PORT=13306 \
+&& export MYSQL_USER=mmuser \
+&& export MYSQL_PASSWORD=mostest \
+&& export MYSQL_DATABASE=mmplugin_parser
 ```
 
 If you set up mysql on Heroku, you can get information for connecting by [`heroku-cli`](https://devcenter.heroku.com/articles/heroku-cli).

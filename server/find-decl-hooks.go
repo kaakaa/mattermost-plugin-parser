@@ -13,7 +13,7 @@ type FuncCall struct {
 }
 
 func findDeclaredHooks(fset *token.FileSet, parsed []*ast.File) ([]called, error) {
-	imp := importer.ForCompiler(fset, "source", nil)
+	imp := importer.Default()
 	conf := types.Config{Importer: imp}
 	info := &types.Info{
 		Defs: make(map[*ast.Ident]types.Object),
