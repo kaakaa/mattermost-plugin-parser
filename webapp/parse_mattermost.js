@@ -1,8 +1,16 @@
 const request = require('request');
-const esprima = require('esprima');
 
-const URL = 'https://raw.githubusercontent.com/mattermost/mattermost-webapp/master/plugins/registry.js';
+const {parseMattermostPluginRegistryClass} = require('./parser')
 
+/**
+ * URL to source code of Mattermost PluginRegistry class
+ */
+const pluginRegistryClassSourceURL = 'https://raw.githubusercontent.com/mattermost/mattermost-webapp/master/plugins/registry.js';
+
+/**
+ * Do http request
+ * @param {*} options http request
+ */
 function doRequest(options) {
     return new Promise(function(resolve, reject) {
         request(options, function(err, resp, body) {
@@ -15,22 +23,17 @@ function doRequest(options) {
     })
 }
 
+/**
+ * Collect method names except for constructor in PluginRegistry class 
+ */
 const parsePluginResistryClassMethod = async () => {
     const body = await doRequest({
-        url: URL,
+        url: pluginRegistryClassSourceURL,
         method: "GET",
     })
-    const parsed = esprima.parseModule(body, { comment: false, attachComment: false });
-    return parsed.body.find(statement =>
-        statement.type === "ExportDefaultDeclaration" &&
-        statement.declaration.id.name === "PluginRegistry"
-    ).declaration.body.body.filter(statement =>
-        statement.type === "MethodDefinition" &&
-        statement.key.name !== "constructor"
-    ).map(statement => ({
-        name: statement.key.name,
-    }))
-}
+
+    return parseMattermostPluginRegistryClass(body);
+};
 
 module.exports = {
     parsePluginResistryClassMethod: parsePluginResistryClassMethod,

@@ -1,4 +1,7 @@
 const Store = require('./store/store');
+
+const logger = require('./logger');
+
 const report = async () => {
     await Store.init();
 
@@ -37,8 +40,8 @@ const report = async () => {
         for (key in usageMap) {
             ret.push(toMd(key, usageMap[key]))
         }
-        console.log(ret.join("\n\n"));
-    }).catch(err => console.log("ERROR: ", err))
+        logger.info(ret.join("\n\n"));
+    }).catch(err => logger.error("Failed to output usages: ", err))
     .finally(_ => Store.end());
 }
 
@@ -55,4 +58,5 @@ const toMd = (api, usages) => {
     })
     return ret.join("\n");
 }
+
 report()

@@ -1,7 +1,16 @@
-const esprima = require('esprima');
 const fsp = require('fs-promise');
 const glob = require('glob');
 
+const {logger} = require('./logger');
+
+const {parsePluginSource} = require('./parser');
+
+/**
+ * Find plugin js/jsx files recursively in `path`, and parse it.
+ * Files in node_modules will not be parsed.
+ * 
+ * @param {String} path root directory 
+ */
 const findRecursive = async (path) => {
     let ret = [];
     ret = ret.concat(await parseFiles(glob.sync(path + "/**/*.jsx", {ignore: path + "/node_modules/**"}), true));
@@ -11,79 +20,30 @@ const findRecursive = async (path) => {
 
 const parseFiles = async (files, isJsx) => {
     let ret = [];
-    for (i in files) {
+    for (idx in files) {
         try {
-            ret = ret.concat(await parseFile(files[i], isJsx))
-        } catch (e) { console.log("  => ERROR: ", e.message)}
+            const file = files[idx];
+            logger.info("Parse %s", file);
+            const usages = await parseFile(file, isJsx);
+            if (usages.length > 1) {
+                logger.info("  %d functions are detected (%s)", usages.length, usages);
+            }
+            ret = ret.concat(usages)
+        } catch (err) {
+            logger.error('Failed to parse: %s', err.message)
+        }
     }
     return ret;
 }
 
+/**
+ * Parse plugin source code
+ * @param {String} file file path for parsing
+ * @param {boolean} isJsx true if file is .jsx
+ */
 const parseFile = async (file, isJsx) => {
-    const data = fsp.readFileSync(file, 'utf-8')
-    console.log("## Parse file: ", file)
-    const parsed = esprima.parseModule(data, {
-        jsx: isJsx,
-        loc: true,
-        comment: false,
-        attachComment: false
-    });
-
-    let ret = [];
-    let decls = parsed.body.find(statement =>
-        statement.type === "ExportDefaultDeclaration"
-    )
-    if (decls) {
-        ret = ret.concat(parseExportDefaultDeclarations(decls, file));
-    }
-
-    decls = parsed.body.find(statement =>
-        statement.type === "ClassDeclaration" &&
-        statement.body
-    )
-    if (decls) {
-        ret = ret.concat(parseClassDeclarations(decls, file));
-    }
-    return ret;
-}
-
-const parseExportDefaultDeclarations = (decls, file) => {
-    return decls.declaration.body.body.filter(statement =>{
-        return statement.type === "MethodDefinition" && statement.key.name === "initialize"
-    }).flatMap(statement => {
-        return statement.value.body.body
-    }).filter(statement => {
-        return statement.expression.type === "CallExpression"
-    }).map(statement => {
-        return statement.expression.callee
-    }).map(statement => {
-        return {
-            file: file,
-            identifier: statement.object.name,
-            name: statement.property.name,
-            loc: statement.loc,
-        }
-    })
-}
-
-const parseClassDeclarations = (decls, file) => {
-    return decls.body.body.filter(statement =>
-        statement.type === "MethodDefinition" &&
-        statement.key.name === "initialize"
-    ).find(statement => 
-        statement.value.body.body
-    ).value.body.body.filter(statement =>
-        statement.expression.type === "CallExpression"
-    ).map(statement => {
-        return statement.expression.callee
-    }).map(statement => {
-        return {
-            file: file,
-            identifier: statement.object.name,
-            name: statement.property.name,
-            loc: statement.loc,
-        }
-    })
+    const contents = fsp.readFileSync(file, 'utf-8');
+    return parsePluginSource(contents, file)
 }
 
 module.exports = {
