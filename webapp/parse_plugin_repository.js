@@ -26,7 +26,7 @@ const parseFiles = async (files, isJsx) => {
             logger.info("Parse %s", file);
             const usages = await parseFile(file, isJsx);
             if (usages.length > 1) {
-                logger.info("  %d functions are detected (%s)", usages.length, usages);
+                logger.info("  %d functions are detected", usages.length);
             }
             ret = ret.concat(usages)
         } catch (err) {

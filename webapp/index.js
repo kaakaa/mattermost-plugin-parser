@@ -13,15 +13,22 @@ const parse = async (path) => {
     // Parse Matermost PluginRegistry class
     logger.info('Fetch and parse Mattermost PluginRegistry class')
     const pluginRegistryClassMethod = await parseMattermost.parsePluginResistryClassMethod();
-    logger.info('Complete: %d functions (%s)',
-        pluginRegistryClassMethod.length,
-        JSON.stringify(pluginRegistryClassMethod.map(m => m.name))
-    );
+    if (pluginRegistryClassMethod.length == 0) {
+        logger.error("No plugin methods are found.");
+        process.exit(9);
+    }
+    logger.info('Complete: %d functions are detected.', pluginRegistryClassMethod.length);
+    pluginRegistryClassMethod.forEach(m => logger.info('  %s', m.name));
 
     // Parse plugin source code
     logger.info('Parse plugin source code')
     const calledFuncs = await parsePluginRepository.findRecursive(path);
-    logger.info("Commplete: %d functions (%s)", calledFuncs.length, JSON.stringify(calledFuncs));
+    if (calledFuncs.length == 0) {
+        console.log('No functions are detected.')
+        process.exit(0);
+    }
+    logger.info("Complete: %d functions are detected.", calledFuncs.length)
+    calledFuncs.forEach(f => logger.info('  %s.%s:%d (%s)', f.identifier, f.name, f.loc.start.line, f.file));
 
     return calledFuncs
         .filter(f => pluginRegistryClassMethod.some(m => m.name == f.name))
