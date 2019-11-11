@@ -1,6 +1,8 @@
+const fs = require('fs');
+
 const Store = require('./store/store');
 
-const logger = require('./logger');
+const {logger} = require('./logger');
 
 const report = async () => {
     await Store.init();
@@ -25,38 +27,23 @@ const report = async () => {
 
     Promise.all(usagePromises)
     .then(usages => {
-        const usageMap = usages.reduce((pv, cv, index, array) => {
-            let api = pv[cv.api];
-            if (api) {
-                api.push(cv);
-            } else {
-                api = [cv];
+        const data = usages.map(u => {
+            const i = u.url.lastIndexOf('/');
+            const name = u.url.substring(i+1);
+
+            let tmpUrl = u.url;
+            if (!u.url.startsWith('http')) {
+                tmpUrl = `https://${tmpUrl}`;
             }
-            pv[cv.api] = api;
-            return pv
-        }, {})
+            const newUrl = `${tmpUrl}/blob/${u.commit_id}/${u.path}#L${u.line}`
 
-        const ret = [];
-        for (key in usageMap) {
-            ret.push(toMd(key, usageMap[key]))
-        }
-        logger.info(ret.join("\n\n"));
-    }).catch(err => logger.error("Failed to output usages: ", err))
+            u.loc = `<a href='${newUrl} target='_blank'>${u.path}#${u.line}</a>`;
+            u.name = name;
+            return u;
+        });
+        fs.writeFileSync("../docs/data.json", JSON.stringify(data, null, "  "));
+}).catch(err => logger.error("Failed to output usages: ", err))
     .finally(_ => Store.end());
-}
-
-const toMd = (api, usages) => {
-    const ret = [];
-    ret.push(`## ${api}`);
-    ret.push(`| Plugin | Path |`);
-    ret.push(`|:-------|:-----|`);
-
-    usages.forEach(u => {
-        const i = u.url.lastIndexOf('/');
-        const name = u.url.substring(i+1);
-        ret.push(`| [${name}](${u.url}) | [${u.path}#${u.line}](${u.url}/blob/${u.commit_id}/${u.path}#L${u.line}) |`)
-    })
-    return ret.join("\n");
 }
 
 report()
