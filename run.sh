@@ -1,4 +1,10 @@
-#!/bin/bash -x
+#!/bin/bash
+
+readonly PROCNAME=${0##*/}
+function log() {
+  local fname=${BASH_SOURCE[1]##*/}
+  echo -e "$(date '+%Y-%m-%dT%H:%M:%S') ${PROCNAME} (${fname}:${BASH_LINENO[0]}:${FUNCNAME[1]}) $@"
+}
 
 FILENAME=repositories.txt
 ROOTDIR=${PWD}
@@ -8,13 +14,13 @@ ROOTDIR=${PWD}
 # mkdir -p $WORKDIR
 
 while read URL; do
-set +x
 echo ""
 echo "##################################################################"
 echo "# Parse plugin: $URL #"
 echo "##################################################################"
 echo ""
-set -x
+
+log "Clone repository"
 
 export GO111MODULE=off
 # git clone $URL $WORKDIR
@@ -23,7 +29,7 @@ WORKDIR=~/go/src/${URL}
 COMMIT_ID=`git -C $WORKDIR rev-parse HEAD`
 COMMITTED_AT=`git -C $WORKDIR show -s --format=%ci HEAD`
 
-echo "cloned: $COMMIT_ID"
+log "cloned $COMMIT_ID"
 
 # server
 cd $WORKDIR
@@ -40,13 +46,20 @@ if [ -e "Gopkg.toml" ]; then
     dep ensure
 fi
 
-echo "Command: go run *.go $URL $COMMIT_ID $WORKDIR $COMMITTED_AT"
+log ""
+log "Command: go run *.go $URL $COMMIT_ID $WORKDIR $COMMITTED_AT"
+log ""
 go run $ROOTDIR/server/*.go $URL $COMMIT_ID $WORKDIR "$COMMITTED_AT"
 
 # webapp
-echo "Command: node index.js $URL $COMMIT_ID $WORKDIR $COMMITTED_AT"
+log ""
+log "Command: node index.js $URL $COMMIT_ID $WORKDIR $COMMITTED_AT"
+log ""
 node $ROOTDIR/webapp/index.js $URL $COMMIT_ID $WORKDIR "$COMMITTED_AT"
 
 cd $ROOTDIR
 rm -fr $WORKDIR
+
+log ""
+log "Done"
 done < $FILENAME

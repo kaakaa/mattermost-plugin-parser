@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"errors"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -45,7 +45,7 @@ func parseMattermostPluginManifest(path string) (*model.Manifest, error) {
 		}
 		return &manifest, nil
 	}
-	return nil, fmt.Errorf("There is no manifest file in %s.", path)
+	return nil, errors.Errorf("There is no manifest file in %s.", path)
 }
 
 func parseMattermostPluginInterface() ([]*ast.Object, []*ast.Object, error) {
@@ -66,7 +66,7 @@ func parseInterface(url, iName string) ([]*ast.Object, error) {
 		return nil, err
 	}
 	if resp.StatusCode != 200 {
-		return nil, fmt.Errorf("Failed to request %v", resp.Status)
+		return nil, errors.Errorf("Failed to request %v", resp.Status)
 	}
 	defer resp.Body.Close()
 	b, err := ioutil.ReadAll(resp.Body)
