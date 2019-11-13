@@ -1,4 +1,4 @@
-module github.com/kaakaa/mmplugin-parser
+module github.com/kaakaa/mattermost-plugin-parser
 
 go 1.12
 
