@@ -7,6 +7,7 @@ import (
 	"reflect"
 
 	_ "github.com/go-sql-driver/mysql"
+
 	"github.com/mattermost/mattermost-server/model"
 )
 
