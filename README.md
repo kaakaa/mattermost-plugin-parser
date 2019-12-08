@@ -26,7 +26,7 @@ export MYSQL_HOST=localhost \
 && export MYSQL_DATABASE=mmplugin_parser
 ```
 
-## 2. Setup
+### 2. Setup
 
 * Resolve dependencies for `server`
 
@@ -42,7 +42,7 @@ $ cd webapp
 $ npm install
 ```
 
-## 3. Run
+### 3. Run
 
 Run script.
 
@@ -52,7 +52,7 @@ $ ./run.sh
 
 If you add repositories of Mattermost plugin development project, edit [repositories.txt](./repositories.txt)
 
-## 4. Report
+### 4. Report
 
 Run `report.js`
 
@@ -68,4 +68,15 @@ You can see, filter, sort this data by [Tabulator](http://tabulator.info/) UI. I
 cd docs
 python -m http.server        # Python v3
 python -m SimpleHTTPServer   # Python v2
+```
+
+## Tips
+
+### Remove invalid data from MySQL database
+
+Since tables in `mmplugin_parser` database has some constrains, if you want to remove a row, it's needed to remove data with correct order.
+
+```shell
+export ID=${COMMIT_ID_YOU_WANNA_DELETE}
+mysql -ummuser -pmostest mmplugin_parser -e "DELETE FROM manifest WHERE commit_id = '$ID'; DELETE FROM settings_schema WHERE commit_id = '$ID'; DELETE FROM plugin_settings WHERE  commit_id = '$ID'; DELETE FROM props WHERE commit_id = '$ID'; DELETE FROM usages WHERE commit_id = '$ID'; DELETE FROM repositories WHERE commit_id = '$ID';"
 ```
