@@ -48,10 +48,6 @@ workflows:
             branches:
               only:
                 - master
-    jobs:
-      - run
-      - pr-release:
-          filters:
-            branches:
-              only:
-                - master
+  jobs:
+    - run
+    - pr-release:
