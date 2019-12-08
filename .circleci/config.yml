@@ -40,6 +40,10 @@ jobs:
       - run: git-pr-release --no-fetch
 workflows:
   version: 2
+  test:
+    jobs:
+      - run
+      - pr-release:
   nightly:
     triggers:
       - schedule:
@@ -48,6 +52,6 @@ workflows:
             branches:
               only:
                 - master
-  jobs:
-    - run
-    - pr-release:
+    jobs:
+      - run
+      - pr-release:
