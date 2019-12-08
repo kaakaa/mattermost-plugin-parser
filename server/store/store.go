@@ -25,8 +25,8 @@ func InitDB() (*sql.DB, error) {
 	return sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s)/%s", user, pass, host, db))
 }
 
-func InsertRepository(db *sql.DB, repo, id, at string) error {
-	_, err := db.Exec("INSERT IGNORE INTO repositories SET url = ?, commit_id = ?, created_at = ?", repo, id, at)
+func InsertRepository(db *sql.DB, repo, id, at, refs string) error {
+	_, err := db.Exec("INSERT IGNORE INTO repositories SET url = ?, commit_id = ?, created_at = ?, refs = ?", repo, id, at, refs)
 	return err
 }
 

@@ -20,6 +20,7 @@ var (
 	RepositoryURL string
 	CommitID      string
 	CommitedAt    string
+	CommitRefs    string
 )
 var Analyzer = &analysis.Analyzer{
 	Name: "StorePluginUsages",
@@ -48,6 +49,7 @@ func store(usages *pluginapi.PluginAPIUsages, manifest *model.Manifest) {
 		"repository": RepositoryURL,
 		"commitId":   CommitID,
 		"commitedAt": CommitedAt,
+		"commitRefs": CommitRefs,
 	}).Info("mattermost-plugin-parser (server) starts.")
 
 	// init database
@@ -57,7 +59,7 @@ func store(usages *pluginapi.PluginAPIUsages, manifest *model.Manifest) {
 	}
 
 	// Store repository information
-	if err := InsertRepository(db, RepositoryURL, CommitID, CommitedAt); err != nil {
+	if err := InsertRepository(db, RepositoryURL, CommitID, CommitedAt, CommitRefs); err != nil {
 		log.WithFields(log.Fields{"details": err.Error()}).Fatal("Failed to insert repository info to db.")
 	}
 

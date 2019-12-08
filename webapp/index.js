@@ -40,7 +40,7 @@ const save = async (f, basePath) => {
     await Store.init()
     let rows = await Store.selectRepository([f.commit_id])
     if (rows.length === 0) {
-        rows = await Store.insertRepository([f.repository, f.commit_id, f.commited_at])
+        rows = await Store.insertRepository([f.repository, f.commit_id, f.commited_at, f.commit_refs])
     }
 
     const regexp = new RegExp(basePath + '/', 'g');
@@ -48,7 +48,7 @@ const save = async (f, basePath) => {
     return await Store.insertUsage([f.commit_id, f.name, relPath, f.loc.start.line])
 }
 
-if (process.argv.length !== 6) {
+if (process.argv.length !== 7) {
     logger.error("Must be 4 arguments. [repository_url] [commit_id] [repo_dir] [commited_at]");
     process.exit(9)
 }
@@ -58,6 +58,7 @@ const repository = process.argv[2]
 const commitId = process.argv[3]
 const basePath = process.argv[4]
 const commitedAt = process.argv[5]
+const commitRefs = process.argv[6]
 
 logger.info("START webapp parser. ", process.argv);
 
@@ -69,6 +70,7 @@ parse(basePath)
                 repository: repository,
                 commit_id: commitId,
                 commited_at: commitedAt,
+                commit_refs: commitRefs,
                 ...f
             }
         }).map(f => save(f, basePath))

@@ -8,10 +8,54 @@ function log() {
 
 FILENAME=repositories.txt
 ROOTDIR=${PWD}
-# WORKDIR=/tmp/mmplugin_parser
 
-# rm -fr $WORKDIR
-# mkdir -p $WORKDIR
+
+function parse() {
+  refs=$1
+  log "Start parsing tag $refs"
+  if [ $refs != "HEAD" ]; then
+    git checkout -b $refs refs/tags/$refs
+  fi
+
+  # TODO: Support dep, glide
+  if [ ! -e "go.mod" ]; then
+    log "go.mod is not found. This version is not parsed."
+    return
+  fi
+
+  log "Found go.mod file"
+  export GO111MODULE=on
+  go build ./...
+
+  COMMIT_ID=`git -C $WORKDIR rev-parse HEAD`
+  COMMITTED_AT=`git -C $WORKDIR show -s --format=%ci HEAD`
+
+  log "cloned $COMMIT_ID"
+
+  # FIXME: Remove this line after updating repository
+  echo "replace github.com/kaakaa/mattermost-plugin-parser => ../" >> go.mod
+  
+  log ""
+  log "Command: go run *.go $URL $COMMIT_ID $WORKDIR $COMMITTED_AT $refs"
+  log ""
+  go run $ROOTDIR/server/main.go \
+    -MattermostPluginAnalyzer.package "$URL" \
+    -PluginManifestAnalyzer.rootdir "$WORKDIR" \
+    -StorePluginUsages.repository "$URL" \
+    -StorePluginUsages.commitid "$COMMIT_ID" \
+    -StorePluginUsages.commitedat "$COMMITTED_AT" \
+    -StorePluginUsages.commitrefs "$refs" \
+    ./...
+  
+  # webapp
+  log ""
+  log "Command: node index.js $URL $COMMIT_ID $WORKDIR $COMMITTED_AT"
+  log ""
+  node $ROOTDIR/webapp/index.js $URL $COMMIT_ID $WORKDIR "$COMMITTED_AT" "$refs"
+
+  git reset --hard
+  git checkout master
+}
 
 while read URL; do
 echo ""
@@ -21,7 +65,6 @@ echo "##################################################################"
 echo ""
 
 log "Clone repository"
-
 
 # NOTE:
 # I want to use `go get` command for fetching plugin source code.
@@ -44,52 +87,15 @@ mkdir $TEMP_REPO
 git clone https://$URL $TEMP_REPO
 WORKDIR=$PWD/$TEMP_REPO
 
-COMMIT_ID=`git -C $WORKDIR rev-parse HEAD`
-COMMITTED_AT=`git -C $WORKDIR show -s --format=%ci HEAD`
-
-log "cloned $COMMIT_ID"
-
 # server
 cd $WORKDIR
-# go install
-if [ -e "go.mod" ]; then
-  log "Found go.mod file"
-  export GO111MODULE=on
-  # go mod tidy -v
-  # go install
-  go build ./...
-fi
-if [ -e "./server" ]; then
-  log "Found server directory"
-  # cd $WORKDIR
-fi
-if [ -e "Gopkg.toml" ]; then
-  log "Found Gopkg.toml"
-  export GO111MODULE=auto
-  dep ensure
-fi
 
-# cd $ROOTDIR
+parse 'HEAD'
 
-# FIXME: Remove this line after updating repository
-echo "replace github.com/kaakaa/mattermost-plugin-parser => ../" >> go.mod
-
-log ""
-log "Command: go run *.go $URL $COMMIT_ID $WORKDIR $COMMITTED_AT"
-log ""
-go run $ROOTDIR/server/main.go \
-  -MattermostPluginAnalyzer.package "$URL" \
-  -PluginManifestAnalyzer.rootdir "$WORKDIR" \
-  -StorePluginUsages.repository "$URL" \
-  -StorePluginUsages.commitid "$COMMIT_ID" \
-  -StorePluginUsages.commitedat "$COMMITTED_AT" \
-  ./...
-
-# webapp
-log ""
-log "Command: node index.js $URL $COMMIT_ID $WORKDIR $COMMITTED_AT"
-log ""
-node $ROOTDIR/webapp/index.js $URL $COMMIT_ID $WORKDIR "$COMMITTED_AT"
+for tag in $(git tag -l)
+do
+  parse $tag
+done
 
 cd $ROOTDIR
 rm -fr $WORKDIR
@@ -97,3 +103,4 @@ rm -fr $WORKDIR
 log ""
 log "Done"
 done < $FILENAME
+

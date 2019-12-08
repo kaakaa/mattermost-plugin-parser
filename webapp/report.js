@@ -34,10 +34,13 @@ const report = async () => {
             let tmpUrl = u.url;
             if (!u.url.startsWith('http')) {
                 tmpUrl = `https://${tmpUrl}`;
+                u.url = tmpUrl;
             }
-            const newUrl = `${tmpUrl}/blob/${u.commit_id}/${u.path}#L${u.line}`
 
-            u.loc = `<a href='${newUrl} target='_blank'>${u.path}#${u.line}</a>`;
+            const refs = u.refs == 'HEAD' ? u.commit_id : u.refs;
+            const newUrl = `${tmpUrl}/blob/${refs}/${u.path}#L${u.line}`
+
+            u.loc = `<a href='${newUrl}' target='_blank'>${u.path}#${u.line}</a>`;
             u.name = name;
             return u;
         });

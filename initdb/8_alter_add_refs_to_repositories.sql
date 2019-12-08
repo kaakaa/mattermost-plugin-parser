@@ -1,0 +1,1 @@
+ALTER TABLE `repositories` ADD `refs` VARCHAR(40) DEFAULT 'HEAD';
