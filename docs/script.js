@@ -25,9 +25,9 @@ fetch("data.json")
                     labelField: "name",
                     target: "_blank",
                 }},
-                {title:"Refs", field:"refs"},
-                {title:"Location", field:"loc", formatter:"html"},
-                {title:"Type", field:"type"},
+                {title:"Refs", field:"refs", headerFilter: true},
+                {title:"Location", field:"loc", formatter:"html", headerFilter: true},
+                {title:"Type", field:"type", headerFilter: true},
                 {title:"API", field:"api", headerFilter: true},
                 // {title:"CommitID", field:"commit_id"},
                 {title:"Collected At", field: "created_at", formatter: "datetime", formatterParams: {
