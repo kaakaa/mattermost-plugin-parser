@@ -50,6 +50,4 @@ workflows:
                 - master
     jobs:
       - run
-      - pr-release:
-          filters:
-            branches:
+      - pr-release
