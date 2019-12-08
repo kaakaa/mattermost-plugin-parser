@@ -7,6 +7,7 @@ jobs:
       - image: circleci/golang:1.12.5-stretch
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Docker Compose をインストール
           command: |
