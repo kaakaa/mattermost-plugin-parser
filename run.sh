@@ -9,13 +9,21 @@ function log() {
 FILENAME=repositories.txt
 ROOTDIR=${PWD}
 
-
 function parse() {
   refs=$1
   log "Start parsing tag $refs"
   if [ $refs != "HEAD" ]; then
     git checkout -b $refs refs/tags/$refs
   fi
+  
+  COMMIT_ID=`git -C $WORKDIR rev-parse HEAD`
+  COMMITTED_AT=`git -C $WORKDIR show -s --format=%ci HEAD`
+
+  # webapp
+  log ""
+  log "Command: node index.js $URL $COMMIT_ID $WORKDIR $COMMITTED_AT $refs"
+  log ""
+  node $ROOTDIR/webapp/index.js $URL $COMMIT_ID $WORKDIR "$COMMITTED_AT" "$refs"
 
   # TODO: Support dep, glide
   if [ ! -e "go.mod" ]; then
@@ -26,9 +34,6 @@ function parse() {
   log "Found go.mod file"
   export GO111MODULE=on
   go build ./...
-
-  COMMIT_ID=`git -C $WORKDIR rev-parse HEAD`
-  COMMITTED_AT=`git -C $WORKDIR show -s --format=%ci HEAD`
 
   log "cloned $COMMIT_ID"
 
@@ -46,12 +51,6 @@ function parse() {
     -StorePluginUsages.commitedat "$COMMITTED_AT" \
     -StorePluginUsages.commitrefs "$refs" \
     ./...
-  
-  # webapp
-  log ""
-  log "Command: node index.js $URL $COMMIT_ID $WORKDIR $COMMITTED_AT"
-  log ""
-  node $ROOTDIR/webapp/index.js $URL $COMMIT_ID $WORKDIR "$COMMITTED_AT" "$refs"
 
   git reset --hard
   git checkout master

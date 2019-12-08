@@ -8,20 +8,36 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Install node.js/npm and dep"
+        name: Docker Compose をインストール
+        command: |
+          curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+          chmod +x ~/docker-compose
+          sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: "Install node.js/npm"
           command: |
             curl -sSL "https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.0-linux-x64/bin/node
             curl https://www.npmjs.com/install.sh | sudo bash
-            go get -u github.com/golang/dep/cmd/dep
       - run:
           name: Set up
           command: |
+            set -x
             cd ./server && go build
             cd ../webapp && npm install 
+            docker-compose up -d
       - run:
           name: Run plugin parser
           command: ./run.sh
-
+      - run:
+          name: Run report script
+          command: cd ./webapp && node report.js
+  pr-release:
+    docker:
+      - image: circleci/ruby
+    steps:
+      - checkout
+      - run: gem install -N git-pr-release
+      - run: git-pr-release --no-fetch
 workflows:
   version: 2
   nightly:
@@ -34,3 +50,6 @@ workflows:
                 - master
     jobs:
       - run
+      - pr-release:
+          filters:
+            branches:
