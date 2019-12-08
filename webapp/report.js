@@ -45,7 +45,37 @@ const report = async () => {
             return u;
         });
         fs.writeFileSync("../docs/data.json", JSON.stringify(data, null, "  "));
-}).catch(err => logger.error("Failed to output usages: ", err))
+
+        // Grouping by api type
+        const values = data
+            .filter((d) => d.refs == "HEAD")
+            .reduce((acc, cur) => {
+                if (acc[cur.type]) {
+                    acc[cur.type].push(cur);
+                } else {
+                    acc[cur.type] = [cur];
+                }
+                return acc;
+            }, {})
+        // Cout usages by API
+        const stats = Object.keys(values).map((key) => {
+            const s = values[key].reduce((acc, cur) => {
+                if (acc[cur.api]) {
+                    acc[cur.api]++;
+                } else {
+                    acc[cur.api] = 1;
+                }
+                return acc;
+            }, {});
+            return {
+                type: key,
+                stats: s,
+            };
+        })
+
+        fs.writeFileSync("../docs/stats.json", JSON.stringify(stats, null, "  "));
+
+    }).catch(err => logger.error("Failed to output usages: ", err))
     .finally(_ => Store.end());
 }
 
