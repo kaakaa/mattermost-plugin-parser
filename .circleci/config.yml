@@ -43,7 +43,7 @@ workflows:
   test:
     jobs:
       - run
-      - pr-release:
+      - pr-release
   nightly:
     triggers:
       - schedule:
@@ -54,4 +54,4 @@ workflows:
                 - master
     jobs:
       - run
-      - pr-release:
+      - pr-release
