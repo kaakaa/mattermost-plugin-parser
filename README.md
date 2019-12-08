@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/kaakaa/mattermost-plugin-parser.svg?style=svg)](https://circleci.com/gh/kaakaa/mattermost-plugin-parser)
+
 ## mattermost-plugin-parser
 
 mattermost-plugin-parser parses project of Mattermost Plugin, and make reports about usages of Mattermsot Plugin API.
