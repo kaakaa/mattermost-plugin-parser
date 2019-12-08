@@ -13,9 +13,7 @@ fetch("data.json")
             pagination:"local",       //paginate the data
             paginationSize: 100,      //allow 50 rows per page of data
             pageLoaded:function(pageno){
-                console.log(pageno, "/", table.getPageMax());
-                table.footerElement = "pageno";
-                this.footerElement = "pageno";
+                document.getElementById("page-description").innerHTML = "page: " + pageno + "/" + table.getPageMax();
             },
             movableColumns:true,      //allow column order to be changed
             resizableRows:true,       //allow row order to be changed
