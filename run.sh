@@ -56,6 +56,11 @@ function parse() {
   git checkout master
 }
 
+
+# Setup
+go run scripts/db-check.go docs/data.json
+
+# RUN
 while read URL; do
 echo ""
 echo "##################################################################"
