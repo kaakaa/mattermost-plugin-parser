@@ -44,6 +44,7 @@ jobs:
       - name: Setup dependencies of npm
         run: npm install
         working-directory: ./webapp
+      - name: Create database
         run: echo "CREATE DATABASE IF NOT EXISTS mmplugin_parser;" | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${MYSQL_PORT}
       - name: Setup mysql
         run: |
