@@ -51,7 +51,7 @@ jobs:
       - name: debug
         run: export
       - name: Setup mysql
-        run: ls initdb/*.sql | sort | xargs cat | mysql -u ${MYSQL_USER} -p ${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${PORT} 
+        run: ls initdb/*.sql | sort | xargs cat | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${PORT} 
         env:
           PORT: ${{ job.services.mysql.ports['3306']}}
           MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
