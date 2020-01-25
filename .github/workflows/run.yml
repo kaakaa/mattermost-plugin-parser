@@ -11,7 +11,8 @@ jobs:
         ports:
           - 3306
     env:
-      MYSQL_HOST: mysql
+      MYSQL_HOST: localhost
+      MYSQL_PORT: 3306
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_DATABASE: mmplugin_parser
@@ -20,56 +21,41 @@ jobs:
         uses: actions/checkout@v1
         with:
           fetch-depth: 1
-      # - name: Cache go modules
-      #   if: runner.os != 'Windows'
-      #   uses: actions/cache@preview
-      #   with:
-      #     path: ~/go/pkg/mod
-      #     key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-go-
-      # - name: Setup depencencies of go
-      #   run: go mod tidy
-      #   working-directory: ./server
-      # - name: Cache node modules
-      #   uses: actions/cache@v1
-      #   with:
-      #     path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-build-${{ env.cache-name }}-
-      #       ${{ runner.os }}-build-
-      #       ${{ runner.os }}-
-      # - name: Setup dependencies of npm
-      #   run: npm install
-      #   working-directory: ./webapp
-      - name: debug
-        run: echo $PORT
-        env:
-          PORT: ${{ job.services.mysql.ports['3306']}}
-          MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
-      - name: debug
-        run: export
-      - name: create database
-        run: echo "CREATE DATABASE IF NOT EXISTS mmplugin_parser;" | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306
+      - name: Cache go modules
+        if: runner.os != 'Windows'
+        uses: actions/cache@preview
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - name: Setup depencencies of go
+        run: go mod tidy
+        working-directory: ./server
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Setup dependencies of npm
+        run: npm install
+        working-directory: ./webapp
+        run: echo "CREATE DATABASE IF NOT EXISTS mmplugin_parser;" | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${MYSQL_PORT}
       - name: Setup mysql
         run: |
-          cat initdb/1_create_mmplugin_parser_db.sql      | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
-          cat initdb/2_create_repositories_table.sql      | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
-          cat initdb/3_create_usages_table.sql            | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
-          cat initdb/4_create_manifest_table.sql          | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
-          cat initdb/5_create_settings_schema_table.sql   | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
-          cat initdb/6_create_pugin_settings_table.sql    | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
-          cat initdb/7_create_props_table.sql             | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
-          cat initdb/8_alter_add_refs_to_repositories.sql | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
-        env:
-          PORT: ${{ job.services.mysql.ports['3306']}}
-          MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
+          cat initdb/1_create_mmplugin_parser_db.sql      | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${MYSQL_PORT} ${MYSQL_DATABASE}
+          cat initdb/2_create_repositories_table.sql      | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${MYSQL_PORT} ${MYSQL_DATABASE}
+          cat initdb/3_create_usages_table.sql            | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${MYSQL_PORT} ${MYSQL_DATABASE}
+          cat initdb/4_create_manifest_table.sql          | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${MYSQL_PORT} ${MYSQL_DATABASE}
+          cat initdb/5_create_settings_schema_table.sql   | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${MYSQL_PORT} ${MYSQL_DATABASE}
+          cat initdb/6_create_plugin_settings_table.sql   | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${MYSQL_PORT} ${MYSQL_DATABASE}
+          cat initdb/7_create_props_table.sql             | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${MYSQL_PORT} ${MYSQL_DATABASE}
+          cat initdb/8_alter_add_refs_to_repositories.sql | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host ${MYSQL_HOST} -P ${MYSQL_PORT} ${MYSQL_DATABASE}
       - name: Run
         run: ./run.sh
-        env:
-          MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
       - name: report
         run: node report.js
-        env:
-          MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
