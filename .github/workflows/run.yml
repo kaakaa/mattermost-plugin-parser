@@ -44,7 +44,7 @@ jobs:
         run: npm install
         working-directory: ./webapp
       - name: Setup mysql
-        run: ls initdb/*.sql | sort | xargs cat | mysql -u ${MYSQL_USER} -p å${MYSQL_PASSWORD} -P ${MYSQL_PORT} --host ${MYSQL_HOST}
+        run: ls initdb/*.sql | sort | xargs cat | mysql -u ${MYSQL_USER} -p ${MYSQL_PASSWORD} -P ${MYSQL_PORT} --host ${MYSQL_HOST}
         env:
           MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
       - name: Run
