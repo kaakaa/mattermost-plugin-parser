@@ -50,6 +50,8 @@ jobs:
           MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
       - name: debug
         run: export
+      - name: create database
+        run: echo "CREATE DATABASE IF NOT EXISTS mmplugin_parser;" | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306
       - name: Setup mysql
         run: ls initdb/*.sql | sort | xargs cat | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
         env:
