@@ -8,10 +8,8 @@ jobs:
     services:
       mysql:
         image: mysql
-        ports:
-          - 3306
     env:
-      MYSQL_HOST: 127.0.0.1
+      MYSQL_HOST: mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_DATABASE: mmplugin_parser
