@@ -53,7 +53,15 @@ jobs:
       - name: create database
         run: echo "CREATE DATABASE IF NOT EXISTS mmplugin_parser;" | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306
       - name: Setup mysql
-        run: ls initdb/*.sql | sort | xargs cat | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
+        run: |
+          cat initdb/1_create_mmplugin_parser_db.sql      | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
+          cat initdb/2_create_repositories_table.sql      | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
+          cat initdb/3_create_usages_table.sql            | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
+          cat initdb/4_create_manifest_table.sql          | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
+          cat initdb/5_create_settings_schema_table.sql   | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
+          cat initdb/6_create_pugin_settings_table.sql    | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
+          cat initdb/7_create_props_table.sql             | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
+          cat initdb/8_alter_add_refs_to_repositories.sql | mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} --host 127.0.0.1 -P 3306 ${MYSQL_DATABASE}
         env:
           PORT: ${{ job.services.mysql.ports['3306']}}
           MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
