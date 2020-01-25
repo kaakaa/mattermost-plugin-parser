@@ -1,0 +1,50 @@
+name: Run
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql
+    env:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: ${{ job.services.mysql.ports['3306']}}
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: mmplugin_parser
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Cache go modules
+        if: runner.os != 'Windows'
+        uses: actions/cache@preview
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - name: Setup depencencies of go
+        run: go mod tidy
+        working-directory: ./server
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Setup dependencies of npm
+        run: npm install
+        working-directory: ./webapp
+      - name: Setup mysql
+        run: ls initdb/*.sql | sort | xargs cat | mysql -uroot -proot -P ${PORT} --host mysql
+      - name: Run
+        run: ./run.sh
+      - name: report
+        run: node report.js
