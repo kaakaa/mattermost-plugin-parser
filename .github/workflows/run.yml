@@ -12,7 +12,6 @@ jobs:
           - 3306
     env:
       MYSQL_HOST: mysql
-      MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_DATABASE: mmplugin_parser
@@ -21,8 +20,6 @@ jobs:
         uses: actions/checkout@v1
         with:
           fetch-depth: 1
-      - name: env
-        run: export
       - name: Cache go modules
         if: runner.os != 'Windows'
         uses: actions/cache@preview
@@ -48,7 +45,13 @@ jobs:
         working-directory: ./webapp
       - name: Setup mysql
         run: ls initdb/*.sql | sort | xargs cat | mysql -u ${MYSQL_USER} -p å${MYSQL_PASSWORD} -P ${MYSQL_PORT} --host ${MYSQL_HOST}
+        env:
+          MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
       - name: Run
         run: ./run.sh
+        env:
+          MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
       - name: report
         run: node report.js
+        env:
+          MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
