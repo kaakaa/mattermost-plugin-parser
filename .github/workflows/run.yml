@@ -15,6 +15,8 @@ jobs:
       MYSQL_PASSWORD: root
       MYSQL_DATABASE: mmplugin_parser
     steps:
+      - name: env
+        run: export
       - name: Checkout repository
         uses: actions/checkout@v1
         with:
@@ -43,7 +45,7 @@ jobs:
         run: npm install
         working-directory: ./webapp
       - name: Setup mysql
-        run: ls initdb/*.sql | sort | xargs cat | mysql -uroot -proot -P ${PORT} --host mysql
+        run: ls initdb/*.sql | sort | xargs cat | mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -P ${MYSQL_PORT} --host  ${MYSQL_HOST}
       - name: Run
         run: ./run.sh
       - name: report
