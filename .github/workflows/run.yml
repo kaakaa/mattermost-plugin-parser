@@ -60,3 +60,14 @@ jobs:
         run: ./run.sh
       - name: report
         run: node report.js
+        working-directory: ./webapp
+        ...
+    - name: Commit files
+      run: |
+        git config --local user.email "stooner.hoe@gmail.com"
+        git config --local user.name "kaakaa"
+        git commit -m "Automatically update data" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
