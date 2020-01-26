@@ -61,7 +61,6 @@ jobs:
       - name: report
         run: node report.js
         working-directory: ./webapp
-        ...
     - name: Commit files
       run: |
         git config --local user.email "stooner.hoe@gmail.com"
