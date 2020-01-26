@@ -65,8 +65,11 @@ jobs:
         run: |
           git config --local user.email "stooner.hoe@gmail.com"
           git config --local user.name "kaakaa"
+          BRANCH=`echo "refs/heads/without-db" | cut -d "/" -f 3`
+          git checkout -b $BRANCH
           git commit -m "Automatically update data" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.refs }}
