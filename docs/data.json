@@ -25956,42 +25956,6 @@
     "name": "mattermost-plugin-gitlab"
   },
   {
-    "url": "https://github.com/mattermost/mattermost-plugin-nps",
-    "commit_id": "7c93e18f8170a3886d0d6edd594138f9a37f7783",
-    "created_at": "2020-01-02T10:37:19.000Z",
-    "refs": "HEAD",
-    "api": "registerMessageWillBePostedHook",
-    "path": "webapp/src/index.js",
-    "line": 62,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-nps/blob/7c93e18f8170a3886d0d6edd594138f9a37f7783/webapp/src/index.js#L62' target='_blank'>webapp/src/index.js#62</a>",
-    "name": "mattermost-plugin-nps"
-  },
-  {
-    "url": "https://github.com/mattermost/mattermost-plugin-nps",
-    "commit_id": "7c93e18f8170a3886d0d6edd594138f9a37f7783",
-    "created_at": "2020-01-02T10:37:19.000Z",
-    "refs": "HEAD",
-    "api": "registerReducer",
-    "path": "webapp/src/index.js",
-    "line": 58,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-nps/blob/7c93e18f8170a3886d0d6edd594138f9a37f7783/webapp/src/index.js#L58' target='_blank'>webapp/src/index.js#58</a>",
-    "name": "mattermost-plugin-nps"
-  },
-  {
-    "url": "https://github.com/mattermost/mattermost-plugin-nps",
-    "commit_id": "7c93e18f8170a3886d0d6edd594138f9a37f7783",
-    "created_at": "2020-01-02T10:37:19.000Z",
-    "refs": "HEAD",
-    "api": "registerRootComponent",
-    "path": "webapp/src/index.js",
-    "line": 65,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-nps/blob/7c93e18f8170a3886d0d6edd594138f9a37f7783/webapp/src/index.js#L65' target='_blank'>webapp/src/index.js#65</a>",
-    "name": "mattermost-plugin-nps"
-  },
-  {
     "url": "https://github.com/cpanato/mattermost-plugin-aws-SNS",
     "commit_id": "81ce5f2e584f6b06cbab70698adc32d5814e7af7",
     "created_at": "2019-06-11T15:38:16.000Z",
@@ -31966,6 +31930,42 @@
     "type": "server.api",
     "loc": "<a href='https://github.com/scottleedavis/mattermost-plugin-spybot/blob/v0.1.2/../../mattermost/mattermost-plugin-sample/server/command.go#L45' target='_blank'>../../mattermost/mattermost-plugin-sample/server/command.go#45</a>",
     "name": "mattermost-plugin-spybot"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-nps",
+    "commit_id": "a56d24828fc8729d6619bbe07d946f81d539f62e",
+    "created_at": "2020-01-27T07:55:32.000Z",
+    "refs": "HEAD",
+    "api": "registerMessageWillBePostedHook",
+    "path": "webapp/src/index.js",
+    "line": 62,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-nps/blob/a56d24828fc8729d6619bbe07d946f81d539f62e/webapp/src/index.js#L62' target='_blank'>webapp/src/index.js#62</a>",
+    "name": "mattermost-plugin-nps"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-nps",
+    "commit_id": "a56d24828fc8729d6619bbe07d946f81d539f62e",
+    "created_at": "2020-01-27T07:55:32.000Z",
+    "refs": "HEAD",
+    "api": "registerReducer",
+    "path": "webapp/src/index.js",
+    "line": 58,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-nps/blob/a56d24828fc8729d6619bbe07d946f81d539f62e/webapp/src/index.js#L58' target='_blank'>webapp/src/index.js#58</a>",
+    "name": "mattermost-plugin-nps"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-nps",
+    "commit_id": "a56d24828fc8729d6619bbe07d946f81d539f62e",
+    "created_at": "2020-01-27T07:55:32.000Z",
+    "refs": "HEAD",
+    "api": "registerRootComponent",
+    "path": "webapp/src/index.js",
+    "line": 65,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-nps/blob/a56d24828fc8729d6619bbe07d946f81d539f62e/webapp/src/index.js#L65' target='_blank'>webapp/src/index.js#65</a>",
+    "name": "mattermost-plugin-nps"
   },
   {
     "url": "https://github.com/moussetc/mattermost-plugin-spoiler",
