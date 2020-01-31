@@ -18,8 +18,8 @@
       "registerFileUploadMethod": 15,
       "registerSlashCommandWillBePostedHook": 3,
       "registerMessageWillBePostedHook": 11,
-      "registerMainMenuAction": 8,
       "registerPostDropdownMenuComponent": 3,
+      "registerMainMenuAction": 8,
       "registerTranslations": 4,
       "registerLinkTooltipComponent": 3
     }
