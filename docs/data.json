@@ -2496,30 +2496,6 @@
     "name": "mattermost-plugin-remind"
   },
   {
-    "url": "https://github.com/mattermost/mattermost-plugin-custom-attributes",
-    "commit_id": "07d79861d5f2750695fa1bf3cbd42679474d9982",
-    "created_at": "2020-01-28T01:43:23.000Z",
-    "refs": "HEAD",
-    "api": "registerPopoverUserAttributesComponent",
-    "path": "webapp/src/index.js",
-    "line": 9,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-custom-attributes/blob/07d79861d5f2750695fa1bf3cbd42679474d9982/webapp/src/index.js#L9' target='_blank'>webapp/src/index.js#9</a>",
-    "name": "mattermost-plugin-custom-attributes"
-  },
-  {
-    "url": "https://github.com/mattermost/mattermost-plugin-custom-attributes",
-    "commit_id": "07d79861d5f2750695fa1bf3cbd42679474d9982",
-    "created_at": "2020-01-28T01:43:23.000Z",
-    "refs": "HEAD",
-    "api": "registerReducer",
-    "path": "webapp/src/index.js",
-    "line": 8,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-custom-attributes/blob/07d79861d5f2750695fa1bf3cbd42679474d9982/webapp/src/index.js#L8' target='_blank'>webapp/src/index.js#8</a>",
-    "name": "mattermost-plugin-custom-attributes"
-  },
-  {
     "url": "https://github.com/moussetc/mattermost-plugin-spoiler",
     "commit_id": "07dd0a51086c92e88379937f0bd331c290984e07",
     "created_at": "2018-11-25T23:31:51.000Z",
@@ -8170,6 +8146,42 @@
     "type": "webapp.registry",
     "loc": "<a href='https://github.com/seansackowitz/mattermost-plugin-jitsi/blob/1315d1d4a98a51ba1091a99c3b8f863e141b65d5/webapp/index.js#L19' target='_blank'>webapp/index.js#19</a>",
     "name": "mattermost-plugin-jitsi"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-custom-attributes",
+    "commit_id": "14027463acf04ecea5a0d5f2b3abfe80959f3a80",
+    "created_at": "2020-02-03T21:25:14.000Z",
+    "refs": "HEAD",
+    "api": "registerAdminConsoleCustomSetting",
+    "path": "webapp/src/index.js",
+    "line": 12,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-custom-attributes/blob/14027463acf04ecea5a0d5f2b3abfe80959f3a80/webapp/src/index.js#L12' target='_blank'>webapp/src/index.js#12</a>",
+    "name": "mattermost-plugin-custom-attributes"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-custom-attributes",
+    "commit_id": "14027463acf04ecea5a0d5f2b3abfe80959f3a80",
+    "created_at": "2020-02-03T21:25:14.000Z",
+    "refs": "HEAD",
+    "api": "registerPopoverUserAttributesComponent",
+    "path": "webapp/src/index.js",
+    "line": 10,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-custom-attributes/blob/14027463acf04ecea5a0d5f2b3abfe80959f3a80/webapp/src/index.js#L10' target='_blank'>webapp/src/index.js#10</a>",
+    "name": "mattermost-plugin-custom-attributes"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-custom-attributes",
+    "commit_id": "14027463acf04ecea5a0d5f2b3abfe80959f3a80",
+    "created_at": "2020-02-03T21:25:14.000Z",
+    "refs": "HEAD",
+    "api": "registerReducer",
+    "path": "webapp/src/index.js",
+    "line": 9,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-custom-attributes/blob/14027463acf04ecea5a0d5f2b3abfe80959f3a80/webapp/src/index.js#L9' target='_blank'>webapp/src/index.js#9</a>",
+    "name": "mattermost-plugin-custom-attributes"
   },
   {
     "url": "https://github.com/cmeadows/mattermost-plugin-tableflip",
