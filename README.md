@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/kaakaa/mattermost-plugin-parser.svg?style=svg)](https://circleci.com/gh/kaakaa/mattermost-plugin-parser)
+![gh-action](https://github.com/kaakaa/mattermost-plugin-parser/workflows/Run/badge.svg)
 
 ## mattermost-plugin-parser
 
