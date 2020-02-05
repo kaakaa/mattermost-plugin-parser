@@ -4,6 +4,9 @@ github.com/manland/mattermost-plugin-analytics
 github.com/mattermost/mattermost-plugin-antivirus
 github.com/mattermost/mattermost-plugin-autolink
 github.com/mattermost/mattermost-plugin-autotranslate
+github.com/mattermost/mattermost-plugin-webex
+github.com/mattermost/mattermost-plugin-zoom
+github.com/mattermost/mattermost-plugin-jira
 github.com/cpanato/mattermost-plugin-aws-SNS
 github.com/blindsidenetworks/mattermost-plugin-bigbluebutton
 github.com/cpanato/mattermost-plugin-botserver
