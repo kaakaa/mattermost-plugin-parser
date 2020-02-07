@@ -13,7 +13,6 @@
       "registerPopoverUserAttributesComponent": 33,
       "registerBottomTeamSidebarComponent": 27,
       "registerLeftSidebarHeaderComponent": 27,
-      "registerAdminConsoleCustomSetting": 1,
       "registerMessageWillFormatHook": 3,
       "registerPopoverUserActionsComponent": 12,
       "registerFileUploadMethod": 15,
@@ -22,6 +21,7 @@
       "registerPostDropdownMenuComponent": 4,
       "registerMainMenuAction": 8,
       "registerTranslations": 4,
+      "registerAdminConsoleCustomSetting": 1,
       "registerLinkTooltipComponent": 3
     }
   },
