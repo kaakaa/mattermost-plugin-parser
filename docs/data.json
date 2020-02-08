@@ -22800,6 +22800,30 @@
     "name": "mattermost-plugin-remind"
   },
   {
+    "url": "https://github.com/mattermost/mattermost-plugin-zoom",
+    "commit_id": "2f083c24eb7c94d3e81ed13ff4f2dde0e3f9e865",
+    "created_at": "2020-02-07T07:31:45.000Z",
+    "refs": "HEAD",
+    "api": "registerChannelHeaderButtonAction",
+    "path": "webapp/src/index.js",
+    "line": 15,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-zoom/blob/2f083c24eb7c94d3e81ed13ff4f2dde0e3f9e865/webapp/src/index.js#L15' target='_blank'>webapp/src/index.js#15</a>",
+    "name": "mattermost-plugin-zoom"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-zoom",
+    "commit_id": "2f083c24eb7c94d3e81ed13ff4f2dde0e3f9e865",
+    "created_at": "2020-02-07T07:31:45.000Z",
+    "refs": "HEAD",
+    "api": "registerPostTypeComponent",
+    "path": "webapp/src/index.js",
+    "line": 22,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-zoom/blob/2f083c24eb7c94d3e81ed13ff4f2dde0e3f9e865/webapp/src/index.js#L22' target='_blank'>webapp/src/index.js#22</a>",
+    "name": "mattermost-plugin-zoom"
+  },
+  {
     "url": "https://github.com/mattermost/mattermost-plugin-jira",
     "commit_id": "3031017f23a03d000b94012b652a89c18ae4e372",
     "created_at": "2019-05-30T10:12:43.000Z",
@@ -64990,30 +65014,6 @@
     "type": "server.api",
     "loc": "<a href='https://github.com/mattermost/mattermost-plugin-jira/blob/f92638aff77db6a55f83e6af79685a516ddc23d8/server/server/plugin.go#L158' target='_blank'>server/server/plugin.go#158</a>",
     "name": "mattermost-plugin-jira"
-  },
-  {
-    "url": "https://github.com/mattermost/mattermost-plugin-zoom",
-    "commit_id": "fb0d6e8fa6cae69ae1cd47b0277eb2c19589b0eb",
-    "created_at": "2020-01-30T10:03:56.000Z",
-    "refs": "HEAD",
-    "api": "registerChannelHeaderButtonAction",
-    "path": "webapp/src/index.js",
-    "line": 15,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-zoom/blob/fb0d6e8fa6cae69ae1cd47b0277eb2c19589b0eb/webapp/src/index.js#L15' target='_blank'>webapp/src/index.js#15</a>",
-    "name": "mattermost-plugin-zoom"
-  },
-  {
-    "url": "https://github.com/mattermost/mattermost-plugin-zoom",
-    "commit_id": "fb0d6e8fa6cae69ae1cd47b0277eb2c19589b0eb",
-    "created_at": "2020-01-30T10:03:56.000Z",
-    "refs": "HEAD",
-    "api": "registerPostTypeComponent",
-    "path": "webapp/src/index.js",
-    "line": 22,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-zoom/blob/fb0d6e8fa6cae69ae1cd47b0277eb2c19589b0eb/webapp/src/index.js#L22' target='_blank'>webapp/src/index.js#22</a>",
-    "name": "mattermost-plugin-zoom"
   },
   {
     "url": "https://github.com/scottleedavis/mattermost-plugin-remind",
