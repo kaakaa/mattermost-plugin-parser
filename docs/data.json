@@ -22920,54 +22920,6 @@
     "name": "mattermost-plugin-nps"
   },
   {
-    "url": "https://github.com/matterpoll/matterpoll",
-    "commit_id": "381c047c5a7787def943a39ca78d6b9e6dd6410b",
-    "created_at": "2020-03-09T22:14:45.000Z",
-    "refs": "HEAD",
-    "api": "registerReducer",
-    "path": "webapp/src/plugin.jsx",
-    "line": 29,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/matterpoll/matterpoll/blob/381c047c5a7787def943a39ca78d6b9e6dd6410b/webapp/src/plugin.jsx#L29' target='_blank'>webapp/src/plugin.jsx#29</a>",
-    "name": "matterpoll"
-  },
-  {
-    "url": "https://github.com/matterpoll/matterpoll",
-    "commit_id": "381c047c5a7787def943a39ca78d6b9e6dd6410b",
-    "created_at": "2020-03-09T22:14:45.000Z",
-    "refs": "HEAD",
-    "api": "registerWebSocketEventHandler",
-    "path": "webapp/src/plugin.jsx",
-    "line": 11,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/matterpoll/matterpoll/blob/381c047c5a7787def943a39ca78d6b9e6dd6410b/webapp/src/plugin.jsx#L11' target='_blank'>webapp/src/plugin.jsx#11</a>",
-    "name": "matterpoll"
-  },
-  {
-    "url": "https://github.com/matterpoll/matterpoll",
-    "commit_id": "381c047c5a7787def943a39ca78d6b9e6dd6410b",
-    "created_at": "2020-03-09T22:14:45.000Z",
-    "refs": "HEAD",
-    "api": "registerWebSocketEventHandler",
-    "path": "webapp/src/plugin.jsx",
-    "line": 17,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/matterpoll/matterpoll/blob/381c047c5a7787def943a39ca78d6b9e6dd6410b/webapp/src/plugin.jsx#L17' target='_blank'>webapp/src/plugin.jsx#17</a>",
-    "name": "matterpoll"
-  },
-  {
-    "url": "https://github.com/matterpoll/matterpoll",
-    "commit_id": "381c047c5a7787def943a39ca78d6b9e6dd6410b",
-    "created_at": "2020-03-09T22:14:45.000Z",
-    "refs": "HEAD",
-    "api": "registerWebSocketEventHandler",
-    "path": "webapp/src/plugin.jsx",
-    "line": 25,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/matterpoll/matterpoll/blob/381c047c5a7787def943a39ca78d6b9e6dd6410b/webapp/src/plugin.jsx#L25' target='_blank'>webapp/src/plugin.jsx#25</a>",
-    "name": "matterpoll"
-  },
-  {
     "url": "https://github.com/blindsidenetworks/mattermost-plugin-bigbluebutton",
     "commit_id": "38513f7c533bdf75a53db07c477a585a529af69f",
     "created_at": "2018-10-02T18:07:37.000Z",
@@ -57550,6 +57502,54 @@
     "type": "webapp.registry",
     "loc": "<a href='https://github.com/mattermost/mattermost-plugin-nps/blob/e9bf8f126ddbe0c8ce7634fda98cab715368f4b5/webapp/src/index.js#L65' target='_blank'>webapp/src/index.js#65</a>",
     "name": "mattermost-plugin-nps"
+  },
+  {
+    "url": "https://github.com/matterpoll/matterpoll",
+    "commit_id": "ed555f95e29f618af55f0e729df843c6e7b8a7c6",
+    "created_at": "2020-03-15T00:25:34.000Z",
+    "refs": "HEAD",
+    "api": "registerReducer",
+    "path": "webapp/src/plugin.jsx",
+    "line": 29,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/matterpoll/matterpoll/blob/ed555f95e29f618af55f0e729df843c6e7b8a7c6/webapp/src/plugin.jsx#L29' target='_blank'>webapp/src/plugin.jsx#29</a>",
+    "name": "matterpoll"
+  },
+  {
+    "url": "https://github.com/matterpoll/matterpoll",
+    "commit_id": "ed555f95e29f618af55f0e729df843c6e7b8a7c6",
+    "created_at": "2020-03-15T00:25:34.000Z",
+    "refs": "HEAD",
+    "api": "registerWebSocketEventHandler",
+    "path": "webapp/src/plugin.jsx",
+    "line": 11,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/matterpoll/matterpoll/blob/ed555f95e29f618af55f0e729df843c6e7b8a7c6/webapp/src/plugin.jsx#L11' target='_blank'>webapp/src/plugin.jsx#11</a>",
+    "name": "matterpoll"
+  },
+  {
+    "url": "https://github.com/matterpoll/matterpoll",
+    "commit_id": "ed555f95e29f618af55f0e729df843c6e7b8a7c6",
+    "created_at": "2020-03-15T00:25:34.000Z",
+    "refs": "HEAD",
+    "api": "registerWebSocketEventHandler",
+    "path": "webapp/src/plugin.jsx",
+    "line": 17,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/matterpoll/matterpoll/blob/ed555f95e29f618af55f0e729df843c6e7b8a7c6/webapp/src/plugin.jsx#L17' target='_blank'>webapp/src/plugin.jsx#17</a>",
+    "name": "matterpoll"
+  },
+  {
+    "url": "https://github.com/matterpoll/matterpoll",
+    "commit_id": "ed555f95e29f618af55f0e729df843c6e7b8a7c6",
+    "created_at": "2020-03-15T00:25:34.000Z",
+    "refs": "HEAD",
+    "api": "registerWebSocketEventHandler",
+    "path": "webapp/src/plugin.jsx",
+    "line": 25,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/matterpoll/matterpoll/blob/ed555f95e29f618af55f0e729df843c6e7b8a7c6/webapp/src/plugin.jsx#L25' target='_blank'>webapp/src/plugin.jsx#25</a>",
+    "name": "matterpoll"
   },
   {
     "url": "https://github.com/streamer45/mattermost-plugin-voice",
