@@ -7,9 +7,8 @@
       "registerWebSocketEventHandler": 101,
       "registerChannelHeaderButtonAction": 49,
       "registerRootComponent": 67,
-      "registerPostDropdownMenuAction": 13,
-      "registerPostMessageAttachmentComponent": 4,
       "registerPostTypeComponent": 44,
+      "registerPostDropdownMenuAction": 13,
       "registerPopoverUserAttributesComponent": 33,
       "registerBottomTeamSidebarComponent": 27,
       "registerLeftSidebarHeaderComponent": 27,
@@ -20,6 +19,7 @@
       "registerMessageWillBePostedHook": 11,
       "registerPostDropdownMenuComponent": 4,
       "registerMainMenuAction": 8,
+      "registerPostMessageAttachmentComponent": 4,
       "registerTranslations": 4,
       "registerAdminConsoleCustomSetting": 1,
       "registerLinkTooltipComponent": 3
