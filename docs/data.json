@@ -168,66 +168,6 @@
     "name": "standup-raven"
   },
   {
-    "url": "https://github.com/mattermost/mattermost-plugin-autotranslate",
-    "commit_id": "05d2d0a9d3f82ec15eaa54e04098aaacbc24f20b",
-    "created_at": "2019-12-20T10:17:22.000Z",
-    "refs": "HEAD",
-    "api": "registerPostDropdownMenuAction",
-    "path": "webapp/src/plugin.jsx",
-    "line": 27,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-autotranslate/blob/05d2d0a9d3f82ec15eaa54e04098aaacbc24f20b/webapp/src/plugin.jsx#L27' target='_blank'>webapp/src/plugin.jsx#27</a>",
-    "name": "mattermost-plugin-autotranslate"
-  },
-  {
-    "url": "https://github.com/mattermost/mattermost-plugin-autotranslate",
-    "commit_id": "05d2d0a9d3f82ec15eaa54e04098aaacbc24f20b",
-    "created_at": "2019-12-20T10:17:22.000Z",
-    "refs": "HEAD",
-    "api": "registerPostMessageAttachmentComponent",
-    "path": "webapp/src/plugin.jsx",
-    "line": 26,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-autotranslate/blob/05d2d0a9d3f82ec15eaa54e04098aaacbc24f20b/webapp/src/plugin.jsx#L26' target='_blank'>webapp/src/plugin.jsx#26</a>",
-    "name": "mattermost-plugin-autotranslate"
-  },
-  {
-    "url": "https://github.com/mattermost/mattermost-plugin-autotranslate",
-    "commit_id": "05d2d0a9d3f82ec15eaa54e04098aaacbc24f20b",
-    "created_at": "2019-12-20T10:17:22.000Z",
-    "refs": "HEAD",
-    "api": "registerReconnectHandler",
-    "path": "webapp/src/plugin.jsx",
-    "line": 46,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-autotranslate/blob/05d2d0a9d3f82ec15eaa54e04098aaacbc24f20b/webapp/src/plugin.jsx#L46' target='_blank'>webapp/src/plugin.jsx#46</a>",
-    "name": "mattermost-plugin-autotranslate"
-  },
-  {
-    "url": "https://github.com/mattermost/mattermost-plugin-autotranslate",
-    "commit_id": "05d2d0a9d3f82ec15eaa54e04098aaacbc24f20b",
-    "created_at": "2019-12-20T10:17:22.000Z",
-    "refs": "HEAD",
-    "api": "registerReducer",
-    "path": "webapp/src/plugin.jsx",
-    "line": 21,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-autotranslate/blob/05d2d0a9d3f82ec15eaa54e04098aaacbc24f20b/webapp/src/plugin.jsx#L21' target='_blank'>webapp/src/plugin.jsx#21</a>",
-    "name": "mattermost-plugin-autotranslate"
-  },
-  {
-    "url": "https://github.com/mattermost/mattermost-plugin-autotranslate",
-    "commit_id": "05d2d0a9d3f82ec15eaa54e04098aaacbc24f20b",
-    "created_at": "2019-12-20T10:17:22.000Z",
-    "refs": "HEAD",
-    "api": "registerWebSocketEventHandler",
-    "path": "webapp/src/plugin.jsx",
-    "line": 38,
-    "type": "webapp.registry",
-    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-autotranslate/blob/05d2d0a9d3f82ec15eaa54e04098aaacbc24f20b/webapp/src/plugin.jsx#L38' target='_blank'>webapp/src/plugin.jsx#38</a>",
-    "name": "mattermost-plugin-autotranslate"
-  },
-  {
     "url": "https://github.com/scottleedavis/mattermost-plugin-remind",
     "commit_id": "07d2945c1de61329ae4e83d913a6e3cae3689f44",
     "created_at": "2019-06-15T18:52:18.000Z",
@@ -53938,6 +53878,66 @@
     "type": "server.api",
     "loc": "<a href='https://github.com/mattermost/mattermost-plugin-jira/blob/e1bfbeafa0a0115f3401a1d8b8e88f5b0c762620/server/server/plugin.go#L158' target='_blank'>server/server/plugin.go#158</a>",
     "name": "mattermost-plugin-jira"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-autotranslate",
+    "commit_id": "e287a23a67e5ce7fbb42bfbf9737b8523fb4ba15",
+    "created_at": "2020-03-16T00:04:05.000Z",
+    "refs": "HEAD",
+    "api": "registerPostDropdownMenuAction",
+    "path": "webapp/src/plugin.jsx",
+    "line": 27,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-autotranslate/blob/e287a23a67e5ce7fbb42bfbf9737b8523fb4ba15/webapp/src/plugin.jsx#L27' target='_blank'>webapp/src/plugin.jsx#27</a>",
+    "name": "mattermost-plugin-autotranslate"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-autotranslate",
+    "commit_id": "e287a23a67e5ce7fbb42bfbf9737b8523fb4ba15",
+    "created_at": "2020-03-16T00:04:05.000Z",
+    "refs": "HEAD",
+    "api": "registerPostMessageAttachmentComponent",
+    "path": "webapp/src/plugin.jsx",
+    "line": 26,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-autotranslate/blob/e287a23a67e5ce7fbb42bfbf9737b8523fb4ba15/webapp/src/plugin.jsx#L26' target='_blank'>webapp/src/plugin.jsx#26</a>",
+    "name": "mattermost-plugin-autotranslate"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-autotranslate",
+    "commit_id": "e287a23a67e5ce7fbb42bfbf9737b8523fb4ba15",
+    "created_at": "2020-03-16T00:04:05.000Z",
+    "refs": "HEAD",
+    "api": "registerReconnectHandler",
+    "path": "webapp/src/plugin.jsx",
+    "line": 46,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-autotranslate/blob/e287a23a67e5ce7fbb42bfbf9737b8523fb4ba15/webapp/src/plugin.jsx#L46' target='_blank'>webapp/src/plugin.jsx#46</a>",
+    "name": "mattermost-plugin-autotranslate"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-autotranslate",
+    "commit_id": "e287a23a67e5ce7fbb42bfbf9737b8523fb4ba15",
+    "created_at": "2020-03-16T00:04:05.000Z",
+    "refs": "HEAD",
+    "api": "registerReducer",
+    "path": "webapp/src/plugin.jsx",
+    "line": 21,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-autotranslate/blob/e287a23a67e5ce7fbb42bfbf9737b8523fb4ba15/webapp/src/plugin.jsx#L21' target='_blank'>webapp/src/plugin.jsx#21</a>",
+    "name": "mattermost-plugin-autotranslate"
+  },
+  {
+    "url": "https://github.com/mattermost/mattermost-plugin-autotranslate",
+    "commit_id": "e287a23a67e5ce7fbb42bfbf9737b8523fb4ba15",
+    "created_at": "2020-03-16T00:04:05.000Z",
+    "refs": "HEAD",
+    "api": "registerWebSocketEventHandler",
+    "path": "webapp/src/plugin.jsx",
+    "line": 38,
+    "type": "webapp.registry",
+    "loc": "<a href='https://github.com/mattermost/mattermost-plugin-autotranslate/blob/e287a23a67e5ce7fbb42bfbf9737b8523fb4ba15/webapp/src/plugin.jsx#L38' target='_blank'>webapp/src/plugin.jsx#38</a>",
+    "name": "mattermost-plugin-autotranslate"
   },
   {
     "url": "https://github.com/seansackowitz/mattermost-plugin-jitsi",
